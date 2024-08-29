@@ -1,0 +1,46 @@
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<div class="min-h-screen bg-gradient-to-r from-green-100 to-blue-100 p-6">
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800">Pets Available for Adoption</h1>
+    </header>
+    <nav class="flex justify-center space-x-4 mb-10">
+        <a href="/login" class="text-lg font-semibold text-blue-600 hover:text-blue-800 transition-colors">Login</a>
+        <a href="/register" class="text-lg font-semibold text-blue-600 hover:text-blue-800 transition-colors">Register</a>
+    </nav>
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% if (pets.length > 0) { %>
+            <% pets.forEach(pet => { %>
+                <div class="bg-white rounded-lg shadow-lg p-4 transform hover:scale-105 transition-transform">
+                    <img src="<%= pet.imageUrl %>" alt="Image of <%= pet.name %>" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-700"><%= pet.name %></h3>
+                        <p class="text-gray-600">Breed: <%= pet.breed %></p>
+                        <p class="text-gray-600">Age: <%= pet.age %> years</p>
+                        <p class="text-gray-600 mb-4"><%= pet.description %></p>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors" onclick="checkAuthentication('<%= pet._id %>')">Adopt Me</button>
+
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p class="col-span-full text-center text-gray-700 text-lg">No pets available at the moment.</p>
+        <% } %>
+    </main>
+</div>
+
+<script>
+  function checkAuthentication(petId) {
+    fetch('/check-auth')  // Create this route to check if the user is authenticated
+      .then(response => response.json())
+      .then(data => {
+        if (data.isAuthenticated) {
+          window.location.href = `/form?petId=${petId}`;
+        } else {
+          alert('Please login to adopt a pet.');
+          window.location.href = '/login';
+        }
+      });
+  }
+</script>
+

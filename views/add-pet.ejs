@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Pet</title>
+</head>
+<body>
+  <h1>ADMIN PANEL :</h1>
+
+
+  <h3>Add a New Pet for Adoption</h3>
+  <% if (success) { %>
+    <p style="color: green;"><%= success %></p>
+  <% } %>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+  <form action="/admin/add-pet" method="POST">
+    <label for="name">Pet Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="breed">Breed:</label>
+    <input type="text" id="breed" name="breed" required><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <label for="imageUrl">Image URL:</label>
+    <input type="url" id="imageUrl" name="imageUrl" required><br>
+
+    <button type="submit">Add Pet</button>
+  </form>
+</body>
+</html>
