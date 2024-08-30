@@ -3,80 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adopt a Pet</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Adoption Form</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="/public/image.png">
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
     }
-    form {
-      max-width: 500px;
-      margin: auto;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
+    h1 {
+      text-align: center;
+      color: #FEA034;
     }
-    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    .form-group label {
+      color: #FEA034;
     }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
+    .btn-primary {
+      background-color: #FEA034;
       border: none;
-      border-radius: 4px;
-      cursor: pointer;
     }
-    button:hover {
-      background-color: #45a049;
+    .btn-primary:hover {
+      background-color: #e6891e; /* Darker orange */
+    }
+    .alert {
+      margin-top: 20px;
+    }
+    .form-check-label {
+      color: #333;
+    }
+    .form-check-input:checked ~ .form-check-label::before {
+      background-color: #FEA034;
+      border-color: #FEA034;
     }
   </style>
 </head>
 <body>
-  <h1>Adopt a Pet</h1>
-  
-  <% if (success) { %>
-    <p style="color: green;"><%= success %></p>
-  <% } %>
-  <% if (error) { %>
-    <p style="color: red;"><%= error %></p>
-  <% } %>
-  
-  <form action="/adopt-pet" method="POST">
-    <label for="name">Your Full Name:</label>
-    <input type="text" id="name" name="name" required>
-    
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required>
-    
-    <label for="address">Home Address:</label>
-    <textarea id="address" name="address" required></textarea>
-    
-    <label for="pet">Pet You Want to Adopt:</label>
-    <select id="pet" name="pet" required>
-      <% petList.forEach(pet => { %>
-        <option value="<%= pet._id %>"><%= pet.name %> - <%= pet.breed %></option>
-      <% }) %>
-    </select>
-    
-    <label for="reason">Why Do You Want to Adopt This Pet?</label>
-    <textarea id="reason" name="reason" required></textarea>
-    
-    <label for="experience">Do You Have Experience with Pets?</label>
-    <select id="experience" name="experience" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
-    
-    <button type="submit">Submit Adoption Request</button>
-  </form>
+  <div class="container">
+    <h1>Adoption Form</h1>
+    <form action="/thank-you" method="POST">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control" id="fname" name="fname" required>
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" name="age" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="adoptiondate">Adoption Date</label>
+        <input type="date" class="form-control" id="adoptiondate" name="adoptiondate" required>
+      </div>
+      <div class="form-group">
+        <label for="adoptionplace">Adoption Place</label>
+        <input type="text" class="form-control" id="adoptionplace" name="adoptionplace" required>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="responsibility" name="responsibility" required>
+        <label class="form-check-label" for="responsibility">
+          I accept the responsibility of adopting this pet
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-3">Submit Adoption Request</button>
+    </form>
+  </div>
 </body>
 </html>

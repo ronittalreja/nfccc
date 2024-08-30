@@ -4,35 +4,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Pet</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="/public/image.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h3 {
+      font-size: 1.75rem;
+      color: #555;
+      text-align: center;  /* Center align the heading */
+      margin-bottom: 20px;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .form-group textarea {
+      resize: vertical;
+    }
+    .btn {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+      border-color: #004085;
+    }
+    .alert {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
 </head>
 <body>
-  <h1>ADMIN PANEL :</h1>
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <h3>Add a New Pet for Adoption</h3>
 
+    <% if (success) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
 
-  <h3>Add a New Pet for Adoption</h3>
-  <% if (success) { %>
-    <p style="color: green;"><%= success %></p>
-  <% } %>
-  <% if (error) { %>
-    <p style="color: red;"><%= error %></p>
-  <% } %>
-  <form action="/admin/add-pet" method="POST">
-    <label for="name">Pet Name:</label>
-    <input type="text" id="name" name="name" required><br>
+    <form action="/admin/add-pet" method="POST">
+      <div class="form-group">
+        <label for="name">Pet Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
 
-    <label for="breed">Breed:</label>
-    <input type="text" id="breed" name="breed" required><br>
+      <div class="form-group">
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" name="breed" required>
+      </div>
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" required><br>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+      </div>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea><br>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+      </div>
 
-    <label for="imageUrl">Image URL:</label>
-    <input type="url" id="imageUrl" name="imageUrl" required><br>
+      <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input type="url" id="imageUrl" name="imageUrl" required>
+      </div>
 
-    <button type="submit">Add Pet</button>
-  </form>
+      <button type="submit" class="btn">Add Pet</button>
+    </form>
+  </div>
 </body>
 </html>

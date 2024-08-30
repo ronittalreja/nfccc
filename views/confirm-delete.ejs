@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirm Deletion</title>
+  <link rel="stylesheet" href="/path/to/your/styles.css"> <!-- Link to your CSS file -->
+  <link rel="icon" href="/public/image.png">
+</head>
+<body>
+  <div class="container">
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete the pet <strong><%= pet.name %></strong>?</p>
+    <form action="/admin/delete-pet/<%= pet._id %>" method="POST">
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a href="/admin/pets" class="btn btn-secondary">Cancel</a>
+    </form>
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <% if (success) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+  </div>
+</body>
+</html>
